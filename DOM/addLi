@@ -1,0 +1,4 @@
+let ul=document.querySelector("ul")
+let li=document.getElementsByTagName("li");
+console.log(li);
+ul.append(li)
