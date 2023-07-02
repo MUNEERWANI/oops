@@ -1,0 +1,22 @@
+var filter=document.getElementById('filer');
+filter.addEventListener('keyup',filetItem)
+
+function filetItem(e){
+    //want in lower case in order to make searching easy
+
+    var text=e.target.value.toLowerCase();
+  var items=  itemList.getElementsByTagName('li')
+  //above gives collection needs to converted into array
+  Array.from(items).forEach(function(item)){
+    var itemName=item.firstChild.textContent;
+    if(itemName.toLowerCase().indexOf(text)!=-1){
+        item.style.display='block';
+
+    }
+    else{
+                item.style.display='none';
+
+    }
+  }
+
+}
