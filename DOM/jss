@@ -1,0 +1,20 @@
+// console.dir(document)
+// console.log(document.domain);//gives domain name
+// console.log(document.URL);//gives url
+// console.log(document.title)// gives title
+// console.log(document.doctype)
+// console.log(document.head)
+// console.log(document.body)
+
+// console.log(document.all)
+// console.log(document.all[10])
+// console.log(document.all[10].textContent="hello");
+// console.log(document.forms);
+console.log(document.images) //gives us images if any otherwise returns array empty
+const headerTitle=document.getElementById("header-title");
+console.log(headerTitle);
+headerTitle.textContent="hello";//it will print text even if its hidden by style tag or css
+headerTitle.innerText="goodbye"// it checks the styles  if hidden it wont display so its better to use
+headerTitle.innerHTML="<h3>goodbye</h3>"//gives rise to security problems
+const headerTitle=document.getElementById("header-title");
+headerTitle.style.borderBottom='solid 3px #000';
