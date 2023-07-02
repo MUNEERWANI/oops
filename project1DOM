@@ -1,0 +1,39 @@
+//goal is click on submit and add elements to the list
+let form=document.getElementById('addForm');
+const itemList=document.getElementById('items');
+
+//form submit event
+
+form.addEventListener('submit',addItem);
+function addItem(e){
+    e.preventDefault();
+
+    var newItem=document.getElementById('item').value;
+
+//create new li element
+var li=document.createElement('li');
+li.className='list-group-item'
+li.appendChild(document.createTextNode(newItem))
+//create del button
+var delbutton=document.createElement('button');
+//add classes
+delbutton.className='btn btn-danger btn-sm float-right delete';
+delbutton.appendChild(document.createTextNode('X'));
+li.appendChild(delbutton);
+
+itemList.appendChild(li);
+}
+//remove item
+
+itemList.addEventListener('click',removeItem);
+
+function removeItem(e){
+    if(e.target.classList.contains('delete')){
+        if(confirm('Are you sure?')){
+            var li=e.target.parentElement;
+            itemList.removeChild(li);
+        }
+    }
+    
+
+}
