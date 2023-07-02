@@ -1,0 +1,34 @@
+//travesrsal of dom
+var itemList =document.querySelector("#items")
+console.log(itemList.parentNode)
+console.log(itemList.parentNode.parentNode)
+console.log(itemList.parentElement)
+
+var itemList =document.querySelector("#items")
+console.log(itemList.childNodes);
+console.log(itemList.children)
+itemList.children[1].style.backgroundColor='yellow'
+console.log(itemList.firstChild)
+console.log(itemList.firstElementChild)
+itemList.firstElementChild.textContent="hello";
+console.log(itemList.lastChild);
+itemList.lastElementChild.textContent="bye";
+
+
+var itemList =document.querySelector("#items");
+console.log(itemList.nextSibling);
+console.log(itemList.nextElementSibling);
+console.log(itemList.previousElementSibling);
+
+//create element
+let newDiv=document.createElement('div');
+newDiv.className='hello';
+newDiv.id='hello1';
+newDiv.setAttribute('title','hello div');
+var newDivText=document.createTextNode('hello world');
+newDiv.appendChild(newDivText);
+var container=document.querySelector('header.container')
+var h1=document.querySelector('header h1');
+container.insertBefore(newDiv,h1)
+console.log(newDiv)
+
