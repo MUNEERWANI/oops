@@ -1,0 +1,73 @@
+//color for top heading
+let heading=document.querySelector('#heading');
+heading.style.backgroundColor='blue';
+//color of paragraph
+let paragraph=document.querySelector('#paragraph');
+paragraph.style.backgroundColor='lightseagreen';
+//adding body color
+let body=document.querySelector('body');
+body.style.backgroundColor='azure';
+// localStorage.setItem("name","Muneer")
+// console.log(localStorage.getItem("name"));
+// let name=document.getElementById("name");
+// localStorage.setItem('name',name)
+// let phone=document.getElementById("phone")
+// let pincode=document.getElementById("pincode")
+// let doctor=document.getElementById("doctor")
+// let submit=document.getElementById("submit")
+// submit.addEventListener('click',storeinLocal);
+// function storeinLocal(e){
+//     e.preventDefault();
+//     localStorage.setItem("name","name.value")
+//     // alert("I am an alert box!");
+// }
+// function storeinLocal(event){
+//     event.preventDefault();
+//     const name =event.target.name;
+//     const phone =event.target.phone;
+//     const pincode =event.target.pincode;
+//     const doctor=event.target.doctor;
+//     localStorage.setItem("name",name)
+//     localStorage.setItem("phone",phone)
+//     localStorage.setItem("pincode",pincode)
+//     localStorage.setItem("doctor",doctor)
+// }
+
+// function storeInLocal(event) {
+//   event.preventDefault();
+  
+//   const name = document.getElementById("name").value;
+//   const phone = document.getElementById("phone").value;
+//   const pincode = document.getElementById("pincode").value;
+//   const doctor = document.getElementById("doctor").value;
+  
+//   localStorage.setItem("name", name);
+//   localStorage.setItem("phone", phone);
+//   localStorage.setItem("pincode", pincode);
+//   localStorage.setItem("doctor", doctor);
+// }
+
+// // Bind the form submission event to the function
+// document.querySelector("form").addEventListener("submit", storeInLocal);
+
+//using Obj
+function storeInLocal(event) {
+  event.preventDefault();
+
+  const name = document.getElementById("name").value;
+  const phone = document.getElementById("phone").value;
+  const pincode = document.getElementById("pincode").value;
+  const doctor = document.getElementById("doctor").value;
+
+  const formData = {
+    name: name,
+    phone: phone,
+    pincode: pincode,
+    doctor: doctor
+  };
+
+  localStorage.setItem("formData", JSON.stringify(formData));
+}
+
+// Bind the form submission event to the function
+document.querySelector("form").addEventListener("submit", storeInLocal);
