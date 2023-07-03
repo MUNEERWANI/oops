@@ -1,0 +1,31 @@
+function storeInLocal(event) {
+  event.preventDefault();
+
+  const name = document.getElementById("name").value;
+  const phone = document.getElementById("phone").value;
+  const pincode = document.getElementById("pincode").value;
+  const doctor = document.getElementById("doctor").value;
+
+  const formData = {
+    name: name,
+    phone: phone,
+    pincode: pincode,
+    doctor: doctor
+  };
+let storedData=localStorage.getItem('formData');
+let formDataArray = [];
+
+if (storedData) {
+  formDataArray = JSON.parse(storedData);
+}
+
+// Add new form data to the array
+formDataArray.push(formData);
+
+// Store the updated array back in local storage
+localStorage.setItem("formData", JSON.stringify(formDataArray));
+}
+document.write(localStorage.getItem("formDataArray"))
+
+// Bind the form submission event to the function
+document.querySelector("form").addEventListener("submit", storeInLocal);
