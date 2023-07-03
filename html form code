@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookappointment</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+</head>
+<body>
+    <!--The goal of this project is to create a website in which i will be able to book an appointment 
+    also after that store the values in my local computer-->
+    <div class="container">
+        <div class="row">
+            <div class="col">
+        <h1 id="heading">Book your appointment </h1></div>
+        <div class="col"><p id="paragraph">Wellcome to Sara hospital book your appointment with worlds best 
+             doctors and We will visit your home within one day. <br>
+            Thankyou </p></div>
+        </div>
+        
+        <div class="container">
+            <div class="row">
+                <h3 id="heading"> Enter your details below </h3>
+            </div>
+            <form onsubmit="storeinLocal(event)">
+                <table class="table">
+                    <tr>
+                <td><label for="name" class="label">Name:</label></td>
+                <td><input type="text" id="name" name="name" size="40">
+                </td>
+            </tr>
+            <br>
+            <tr>
+                <td><label for="phone" class="label">Mobile number:</label></td>
+                <td><input type="tel" id="phone" name="phone" size="40"></td></tr>
+                <tr>
+                    <td><label for="pincode" class="label">Pincode:</label></td>
+                    <td><input type="number" id="pincode" name="pincode" size="40"></td>
+                </tr>
+                <tr>
+                    <td><label for="doctor" class="label">Doctor Name:</label></td>
+                    <td><input type="text" id="doctor" name="doctor" size="40">
+                    </td>
+                </tr>
+                <tr><td><input type="submit" id="submit" value="Book Your appointment"></td></tr>
+            </table>
+
+            </form>
+        </div>
+        
+    </div>
+    <script src="localStorage.js"></script>
+    
+</body>
+</html>
