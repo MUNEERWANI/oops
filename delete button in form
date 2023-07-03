@@ -1,0 +1,37 @@
+function storeInLocal(event) {
+  event.preventDefault();
+
+  const name = document.getElementById("name").value;
+  const phone = document.getElementById("phone").value;
+  const pincode = document.getElementById("pincode").value;
+  const doctor = document.getElementById("doctor").value;
+
+  const formData = {
+    name: name,
+    phone: phone,
+    pincode: pincode,
+    doctor: doctor
+  };
+//let storedData=localStorage.getItem('formData');
+
+
+// Store the updated array back in local storage
+localStorage.setItem("formData", JSON.stringify(formData));
+showUserOnScreen(formData);
+
+}
+function showUserOnScreen(formData){
+  const parentELe=document.getElementById('listofitems')
+  const childEle=document.createElement('li');
+  childEle.textContent=formData.name+'-'+formData.phone+'-'+formData.pincode+'-'+formData.doctor
+    const deleteButton=document.createElement('input');
+    deleteButton.type='button';
+    deleteButton.value='Delete';
+    deleteButton.onclick=()=>{
+      localStorage.removeItem(formData.name);
+      parentELe.removeChild(childEle)
+    }
+    childEle.appendChild(deleteButton);
+    parentELe.appendChild(childEle);
+
+}
