@@ -1,0 +1,163 @@
+//color for top heading
+let heading=document.querySelector('#heading');
+heading.style.backgroundColor='blue';
+//color of paragraph
+let paragraph=document.querySelector('#paragraph');
+paragraph.style.backgroundColor='lightseagreen';
+//adding body color
+let body=document.querySelector('body');
+body.style.backgroundColor='azure';
+// localStorage.setItem("name","Muneer")
+// console.log(localStorage.getItem("name"));
+// let name=document.getElementById("name");
+// localStorage.setItem('name',name)
+// let phone=document.getElementById("phone")
+// let pincode=document.getElementById("pincode")
+// let doctor=document.getElementById("doctor")
+// let submit=document.getElementById("submit")
+// submit.addEventListener('click',storeinLocal);
+// function storeinLocal(e){
+//     e.preventDefault();
+//     localStorage.setItem("name","name.value")
+//     // alert("I am an alert box!");
+// }
+// function storeinLocal(event){
+//     event.preventDefault();
+//     const name =event.target.name;
+//     const phone =event.target.phone;
+//     const pincode =event.target.pincode;
+//     const doctor=event.target.doctor;
+//     localStorage.setItem("name",name)
+//     localStorage.setItem("phone",phone)
+//     localStorage.setItem("pincode",pincode)
+//     localStorage.setItem("doctor",doctor)
+// }
+
+// function storeInLocal(event) {
+//   event.preventDefault();
+  
+//   const name = document.getElementById("name").value;
+//   const phone = document.getElementById("phone").value;
+//   const pincode = document.getElementById("pincode").value;
+//   const doctor = document.getElementById("doctor").value;
+  
+//   localStorage.setItem("name", name);
+//   localStorage.setItem("phone", phone);
+//   localStorage.setItem("pincode", pincode);
+//   localStorage.setItem("doctor", doctor);
+// }
+
+// // Bind the form submission event to the function
+// document.querySelector("form").addEventListener("submit", storeInLocal);
+
+//using Obj
+
+function storeInLocal(event) {
+  event.preventDefault();
+
+  const name = document.getElementById("name").value;
+  const phone = document.getElementById("phone").value;
+  const pincode = document.getElementById("pincode").value;
+  const doctor = document.getElementById("doctor").value;
+
+  const formData = {
+    name: name,
+    phone: phone,
+    pincode: pincode,
+    doctor: doctor
+  };
+//let storedData=localStorage.getItem('formData');
+
+
+// Store the updated array back in local storage
+//now will do using axios instead of setItem local storage
+
+axios.post("https://crudcrud.com/api/12d6c55d3fed4e9a8aa44a2d6c014700/appointmentData",formData).
+then((response)=>{
+  console.log(response)
+  showUserOnScreen(response.data)
+}).catch((err)=>{
+  console.log(err)
+})
+//localStorage.setItem("formData", JSON.stringify(formData));
+//showUserOnScreen(formData);
+
+}
+function showUserOnScreen(formData){
+  const parentELe=document.getElementById('listofitems')
+  const childEle=document.createElement('li');
+  childEle.textContent=formData.name+'-'+formData.phone+'-'+formData.pincode+'-'+formData.doctor
+    const deleteButton=document.createElement('input');
+    deleteButton.type='button';
+    deleteButton.value='Delete';
+    deleteButton.onclick=()=>{
+      //localStorage.removeItem(formData.name);
+      axios.delete(`https://crudcrud.com/api/12d6c55d3fed4e9a8aa44a2d6c014700/appointmentData/${formData._id}`)
+      .then((response)=>{
+        parentELe.removeChild(childEle)
+        console.log('Data deleted successfully')
+      })
+      .catch((err)=>{
+        console.log("error deleting data")
+      })
+      
+    }
+    const editButton=document.createElement('input');
+    editButton.type='button';
+    editButton.value='edit';
+    editButton.onclick=()=>{
+      document.getElementById("name").value = formData.name;
+      document.getElementById("phone").value = formData.phone;
+      document.getElementById("pincode").value = formData.pincode;
+      document.getElementById("doctor").value = formData.doctor;
+      document.querySelector("form").onsubmit = (event) => {
+        event.preventDefault();
+        const updatedFormData = {
+          name: document.getElementById("name").value,
+          phone: document.getElementById("phone").value,
+          pincode: document.getElementById("pincode").value,
+          doctor: document.getElementById("doctor").value
+        };
+        axios.patch(`https://crudcrud.com/api/12d6c55d3fed4e9a8aa44a2d6c014700/appointmentData/${formData._id}`,
+      updatedFormData)
+      .then((response)=>{
+        parentELe.removeChild(childEle);
+        showUserOnScreen(updatedFormData); // Update the displayed data with the updated form data
+
+        // document.getElementById("name").value=formData.name;
+        // document.getElementById("phone").value=formData.phone;
+        // document.getElementById("pincode").value=formData.pincode;
+        // document.getElementById("doctor").value=formData.doctor;
+      })
+      .catch((err)=>{
+        console.log(err)
+      })
+      }
+      
+      
+      //localStorage.removeItem(formData.name);
+      
+
+    }
+    childEle.appendChild(deleteButton);
+    childEle.appendChild(editButton);
+
+    parentELe.appendChild(childEle);
+
+}
+
+// Bind the form submission event to the function
+//document.querySelector("form").addEventListener("submit", storeInLocal);
+//On screen refresh 
+window.addEventListener("DOMContentLoaded",()=>{
+  axios.get("https://crudcrud.com/api/12d6c55d3fed4e9a8aa44a2d6c014700/appointmentData")
+  .then((response)=>{
+    console.log(response)
+    for(let i=0;i<=response.data.length;i++){
+      showUserOnScreen(response.data[i])
+
+    }
+  }).catch((error)=>{
+    console.log(error)
+  })
+})
